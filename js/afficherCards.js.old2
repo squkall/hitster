@@ -1,0 +1,47 @@
+window.onload = function () {
+    fetch('http://localhost:8080/musicsSimple')
+   .then(response => response.text())
+   .then(text => {
+        musics = JSON.parse(text)
+        console.log(musics)
+        //creeUnLecteurSpotify(1, musics.items[0])
+    })
+}
+IFrameAPISave = null
+controllers = []
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    console.log("iframe ready")
+    IFrameAPISave = IFrameAPI 
+  };
+
+  
+creeUnLecteurSpotify = (id, music)=> {
+    grid = document.getElementById("gridPrincipale")
+    const newDiv = document.createElement("div");
+    const playButton = document.createElement("div");
+    const lecteur = document.createElement("div");
+    
+    grid.appendChild(playButton)
+    playButton.appendChild(newDiv)
+    newDiv.appendChild(lecteur)
+    lecteur.setAttribute("id",'embed-iframe');
+    newDiv.setAttribute("class",'hidder');
+    newDiv.setAttribute("id",'hidder');
+    playButton.setAttribute("class",'playButton');
+    playButton.setAttribute("id",'lecteur');
+    playButton.setAttribute("onClick",'play()');
+    const options = {
+        uri: music.uri,
+        width: '100px',
+        height: '100px',
+    };
+    const callback = (EmbedController) => {
+        controllers.push(EmbedController)
+    };
+    IFrameAPISave.createController(lecteur, options, callback);
+}
+
+play = (id = 0) => {
+    document.getElementById("hidder").click()
+    controllers[0].togglePlay()
+}

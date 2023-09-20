@@ -1,0 +1,37 @@
+.playButton{
+    grid-column: 1;
+}
+
+.reponse{
+    grid-column: 1;
+}
+
+
+.gridPrincipale{
+    display: grid;
+    grid-template-columns: repeat(5, 20vw);
+    grid-template-rows: repeat(10, 10vh);
+    border-radius:12px
+}
+.elemGrid{
+    border: 1px solid black ;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.iframe{
+    height: 10vh;
+    width: 10vw;
+}
+.cacheurIframe{
+    position: absolute;
+    height: 10vh;
+    width: 8.5vw;
+    z-index: 10;
+    color: aquamarine;
+    background-color: aliceblue;
+}
+
+
+.bouttonShowResponse{
+    z-index: 11;
+}
